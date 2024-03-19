@@ -1,0 +1,6 @@
+// https://github.com/tsconfig/bases/blob/main/bases/next.json
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Next.js",
+  "extends": ["./base.json", "@tsconfig/next/tsconfig.json"]
+}

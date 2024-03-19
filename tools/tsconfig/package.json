@@ -1,0 +1,13 @@
+{
+  "name": "@example/tsconfig",
+  "dependencies": {
+    "@tsconfig/create-react-app": "^2.0.2",
+    "@tsconfig/next": "^2.0.1",
+    "@tsconfig/react-native": "^3.0.3",
+    "@tsconfig/strictest": "^2.0.2"
+  },
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -2,23 +2,27 @@
   "name": "example",
   "private": true,
   "scripts": {
+    "ci": "act --container-architecture linux/amd64 -e .github/event.json",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "fmt": "turbo fmt",
+    "test": "turbo test",
+    "web": "bun --cwd ./apps/web",
+    "mobile": "bun --cwd ./apps/mobile",
+    "api": "bun --cwd ./apps/api",
+    "ui": "bun --cwd ./packages/ui",
+    "core": "bun --cwd ./packages/core",
+    "design-token": "bun --cwd ./packages/design-token",
+    "tsconfig": "bun --cwd ./tools/tsconfig",
+    "postcss": "bun --cwd ./tools/postcss"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "prettier": "^3.2.5",
+    "@biomejs/biome": "1.6.1",
     "turbo": "latest"
   },
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "bun@1.0.29",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "workspaces": ["apps/*", "packages/*", "tools/*"]
 }

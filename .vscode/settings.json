@@ -1,0 +1,170 @@
+{
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "commit-message-editor.dynamicTemplate": ["{type}{scope}{description}", "", "{body}", "", "{footer}"],
+  "commit-message-editor.staticTemplate": ["label: emoji (scope) short-description", "", "body", "", "footer"],
+  "commit-message-editor.tokens": [
+    {
+      "combobox": true,
+      "description": "Type of changes.",
+      "label": "Type",
+      "name": "type",
+      "options": [
+        {
+          "description": "Implementation of new features.",
+          "label": "feat: ✨",
+          "value": "feat: ✨"
+        },
+        {
+          "description": "Repair of existing features.",
+          "label": "feat: 🎈",
+          "value": "feat: 🎈"
+        },
+        {
+          "description": "Deletion of features.",
+          "label": "feat: ⚰️",
+          "value": "feat: ⚰️"
+        },
+        {
+          "description": "Bug fixes.",
+          "label": "fix: 🐛",
+          "value": "fix: 🐛"
+        },
+        {
+          "description": "Critical bug fixes or major changes.",
+          "label": "fix: 🚑️",
+          "value": "fix: 🚑️"
+        },
+        {
+          "description": "Documentation changes.",
+          "label": "doc: 📝",
+          "value": "doc: 📝"
+        },
+        {
+          "description": "Typography changes.",
+          "label": "typo: 🖋️",
+          "value": "typo: 🖋️"
+        },
+        {
+          "description": "Style changes.",
+          "label": "style: 💄",
+          "value": "style: 💄"
+        },
+        {
+          "description": "Code formatting or refactoring.",
+          "label": "refactor: ♻️",
+          "value": "refactor: ♻️"
+        },
+        {
+          "description": "Test cases changes.",
+          "label": "test: 🧪",
+          "value": "test: 🧪"
+        },
+        {
+          "description": "CI changes.",
+          "label": "ci: 🦺",
+          "value": "ci: 🦺"
+        },
+        {
+          "description": "Build system or dependency changes.",
+          "label": "build: 📦️",
+          "value": "build: 📦️"
+        },
+        {
+          "description": "The Dockerfile changes.",
+          "label": "container: 🐳",
+          "value": "container: 🐳"
+        },
+        {
+          "description": "The docker-compose changes.",
+          "label": "container: 🐙",
+          "value": "container: 🐙"
+        },
+        {
+          "description": "Configuration changes.",
+          "label": "chore: 🔧",
+          "value": "chore: 🔧"
+        },
+        {
+          "description": "Development script changes.",
+          "label": "chore: 🔨",
+          "value": "chore: 🔨"
+        },
+        {
+          "description": "Assets changes.",
+          "label": "chore: 🍱",
+          "value": "chore: 🍱"
+        },
+        {
+          "description": "Reversion of changes.",
+          "label": "revert: ⏪️",
+          "value": "revert: ⏪️"
+        },
+        {
+          "description": "Changes that will be squashed.",
+          "label": "wip: 🚧",
+          "value": "wip: 🚧"
+        },
+        {
+          "description": "The first commit.",
+          "label": "initial: 🎉",
+          "value": "initial: 🎉"
+        },
+        {
+          "description": "Code format changes.",
+          "label": "format: 🎨",
+          "value": "format: 🎨"
+        }
+      ],
+      "type": "enum"
+    },
+    {
+      "description": "Scope of changes.",
+      "label": "Scope",
+      "name": "scope",
+      "prefix": " (",
+      "suffix": ")",
+      "type": "text"
+    },
+    {
+      "description": "Commit summary.",
+      "label": "Short Description",
+      "name": "description",
+      "prefix": " ",
+      "type": "text"
+    },
+    {
+      "description": "Detailed description of commit.",
+      "label": "Body",
+      "lines": 5,
+      "maxLines": 10,
+      "multiline": true,
+      "name": "body",
+      "type": "text"
+    },
+    {
+      "description": "Description of disruptive changes or signature.",
+      "label": "Footer",
+      "multiline": true,
+      "name": "footer",
+      "type": "text"
+    }
+  ],
+  "commit-message-editor.view.defaultView": "form",
+  "deno.enablePaths": ["supabase/functions"],
+  "deno.lint": true,
+  "deno.unstable": true,
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "editor.defaultFormatter": "biomejs.biome",
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "cSpell.words": ["Elysia"]
+}

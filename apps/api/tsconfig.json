@@ -1,0 +1,10 @@
+{
+  "extends": "@example/tsconfig/elysia.json",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

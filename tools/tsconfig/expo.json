@@ -1,0 +1,12 @@
+// https://github.com/tsconfig/bases/blob/main/bases/react-native.json
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Expo",
+  "extends": ["./base.json", "@tsconfig/react-native/tsconfig.json"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["DOM", "ESNext"]
+  }
+}

@@ -1,0 +1,10 @@
+// https://github.com/tsconfig/bases/blob/main/bases/strictest.json
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "display": "Default",
+  "compilerOptions": {
+    "target": "ES2022",
+    "noPropertyAccessFromIndexSignature": false
+  }
+}
