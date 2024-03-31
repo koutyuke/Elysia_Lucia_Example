@@ -3,10 +3,24 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --hot src/app/index.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:studio": "prisma studio --browser none",
+    "prisma:seed": "prisma db seed"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/swagger": "^1.0.3",
+    "@lucia-auth/adapter-prisma": "^4.0.1",
+    "@prisma/client": "5.11.0",
+    "arctic": "^1.2.1",
+    "discord-api-types": "^0.37.77",
+    "elysia": "latest",
+    "lucia": "^3.1.1",
+    "oslo": "^1.1.3",
+    "pino-pretty": "^11.0.0",
+    "prisma": "^5.11.0"
   },
   "devDependencies": {
     "@example/tsconfig": "workspace:*",

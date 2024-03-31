@@ -8,21 +8,21 @@
     "lint": "turbo lint",
     "fmt": "turbo fmt",
     "test": "turbo test",
-    "web": "bun --cwd ./apps/web",
-    "mobile": "bun --cwd ./apps/mobile",
-    "api": "bun --cwd ./apps/api",
-    "ui": "bun --cwd ./packages/ui",
-    "core": "bun --cwd ./packages/core",
-    "design-token": "bun --cwd ./packages/design-token",
-    "tsconfig": "bun --cwd ./tools/tsconfig",
-    "postcss": "bun --cwd ./tools/postcss"
+    "web": "cd ./apps/web && bun",
+    "mobile": "cd ./apps/mobile && bun",
+    "api": "cd ./apps/api && bun",
+    "ui": "cd ./packages/ui && bun",
+    "core": "cd ./packages/core && bun",
+    "design-token": "cd ./packages/design-token && bun",
+    "tsconfig": "cd ./tools/tsconfig && bun",
+    "postcss": "cd ./tools/postcss && bun"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.1",
     "turbo": "latest"
   },
-  "engines": {
-    "node": ">=18"
-  },
-  "workspaces": ["apps/*", "packages/*", "tools/*"]
+  "workspaces": ["apps/*", "packages/*", "tools/*"],
+  "dependencies": {
+    "@bogeychan/elysia-logger": "^0.0.19"
+  }
 }
