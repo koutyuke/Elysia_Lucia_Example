@@ -1,10 +1,14 @@
 {
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[svg]": {
     "editor.defaultFormatter": "jock.svg"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
+    "editor.defaultFormatter": "biomejs.biome"
   },
+  "cSpell.words": ["Elysia"],
   "commit-message-editor.dynamicTemplate": ["{type}{scope}{description}", "", "{body}", "", "{footer}"],
   "commit-message-editor.staticTemplate": ["label: emoji (scope) short-description", "", "body", "", "footer"],
   "commit-message-editor.tokens": [
@@ -155,16 +159,9 @@
     }
   ],
   "commit-message-editor.view.defaultView": "form",
-  "deno.enablePaths": ["supabase/functions"],
-  "deno.lint": true,
-  "deno.unstable": true,
   "editor.codeActionsOnSave": {
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
-  "editor.defaultFormatter": "biomejs.biome",
-  "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "cSpell.words": ["Elysia"]
+  "editor.defaultFormatter": "biomejs.biome"
 }
