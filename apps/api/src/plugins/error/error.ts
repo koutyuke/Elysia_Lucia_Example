@@ -61,11 +61,31 @@ const error = new Elysia()
 	})
 	.onError({ as: "global" }, ctx => {
 		const { code, error, log } = ctx;
-		log.error({
-			code,
-			error,
-		});
-		return error;
+
+		switch (code) {
+			case "NOT_FOUND":
+				return new NotFoundException();
+			case "INTERNAL_SERVER_ERROR":
+				log.error({
+					code,
+					error,
+				});
+				return new InternalServerErrorException();
+			case "UNKNOWN":
+				if (process.env.NODE_ENV !== "production") {
+					log.error({
+						code,
+						error,
+					});
+				}
+				return new InternalServerErrorException();
+			default:
+				log.error({
+					code,
+					error,
+				});
+				return error;
+		}
 	});
 
 export { error };
