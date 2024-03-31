@@ -7,6 +7,7 @@ const logger = pinoLogger({
 			colorize: true,
 		},
 	},
+	level: process.env.NODE_ENV === "production" ? "error" : "debug",
 });
 
 export { logger };
