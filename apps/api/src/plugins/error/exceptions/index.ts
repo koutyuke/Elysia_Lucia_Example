@@ -1,5 +1,6 @@
 export * from "./badGateway";
 export * from "./badRequest";
+export * from "./conflict";
 export * from "./forbidden";
 export * from "./imATeapot";
 export * from "./internalServerError";

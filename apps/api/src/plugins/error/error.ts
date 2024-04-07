@@ -3,6 +3,7 @@ import { logger } from "../logger";
 import {
 	BadGatewayException,
 	BadRequestException,
+	ConflictException,
 	ForbiddenException,
 	ImATeapotException,
 	InternalServerErrorException,
@@ -29,6 +30,9 @@ import {
  * 405 - Method Not Allowed
  * MethodNotAllowedException
  *
+ * 409 - Conflict
+ * ConflictException
+ *
  * 418 - I'm a teapot
  * ImATeapotException
  *
@@ -50,6 +54,7 @@ const error = new Elysia()
 	.error({
 		BadGatewayException,
 		BadRequestException,
+		ConflictException,
 		ForbiddenException,
 		ImATeapotException,
 		InternalServerErrorException,
@@ -70,14 +75,6 @@ const error = new Elysia()
 					code,
 					error,
 				});
-				return new InternalServerErrorException();
-			case "UNKNOWN":
-				if (process.env.NODE_ENV !== "production") {
-					log.error({
-						code,
-						error,
-					});
-				}
 				return new InternalServerErrorException();
 			default:
 				log.error({
