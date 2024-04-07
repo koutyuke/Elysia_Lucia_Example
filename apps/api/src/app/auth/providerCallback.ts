@@ -9,16 +9,11 @@ import { generateId } from "lucia";
 
 const providerCallback = new Elysia().use(logger).get(
 	"/:provider/callback",
-	async ({
-		query: { code, state },
-		cookie: { oauth_state, oauth_code_verifier, oauth_next },
-		params: { provider },
-		set,
-		log,
-	}) => {
-		const next = oauth_next.value ?? "/";
-		const storedState = oauth_state.value;
-		const storedCodeVerifier = oauth_code_verifier.value;
+	async ({ query: { code, state }, cookie, params: { provider }, set, log }) => {
+		const { oauth_state, oauth_code_verifier, oauth_next } = cookie;
+		const next = oauth_next?.value ?? "/";
+		const storedState = oauth_state?.value;
+		const storedCodeVerifier = oauth_code_verifier?.value;
 
 		if (!storedState || !storedCodeVerifier || state !== storedState) {
 			throw new BadRequestException("The state provided does not match the state in the cookie.");
@@ -78,9 +73,10 @@ const providerCallback = new Elysia().use(logger).get(
 			const session = await lucia.createSession(existingUser === null ? userId : existingUser.id, {});
 			const sessionCookie = lucia.createSessionCookie(session.id);
 
-			set.headers = {
-				"Set-Cookie": sessionCookie.serialize(),
-			};
+			cookie[sessionCookie.name]?.set({
+				value: sessionCookie.value,
+				...sessionCookie.attributes,
+			});
 			set.redirect = next;
 		} catch (error) {
 			log.error(error);
@@ -91,11 +87,6 @@ const providerCallback = new Elysia().use(logger).get(
 		}
 	},
 	{
-		cookie: t.Cookie({
-			oauth_state: t.String(),
-			oauth_code_verifier: t.String(),
-			oauth_next: t.Optional(t.String()),
-		}),
 		query: t.Object(
 			{
 				code: t.String(),
