@@ -11,7 +11,7 @@ const provider = new Elysia().use(logger).get(
 
 		const redirectUrl = await genAuthUrl(provider, state, codeVerifier);
 
-		oauth_state.set({
+		oauth_state?.set({
 			value: state,
 			path: "/",
 			secure: process.env.NODE_ENV === "production",
@@ -20,7 +20,7 @@ const provider = new Elysia().use(logger).get(
 			maxAge: 60 * 10,
 		});
 
-		oauth_code_verifier.set({
+		oauth_code_verifier?.set({
 			value: codeVerifier,
 			path: "/",
 			secure: process.env.NODE_ENV === "production",
@@ -29,7 +29,7 @@ const provider = new Elysia().use(logger).get(
 			maxAge: 60 * 10,
 		});
 
-		oauth_next.set({
+		oauth_next?.set({
 			value: next ?? "/",
 			path: "/",
 			secure: process.env.NODE_ENV === "production",
@@ -41,11 +41,6 @@ const provider = new Elysia().use(logger).get(
 		set.redirect = redirectUrl.toString();
 	},
 	{
-		cookie: t.Cookie({
-			oauth_state: t.String(),
-			oauth_code_verifier: t.String(),
-			oauth_next: t.Optional(t.String()),
-		}),
 		query: t.Object({
 			next: t.Optional(t.String()),
 		}),
