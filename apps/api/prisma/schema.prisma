@@ -27,9 +27,11 @@ model OAuthAccount {
 model User {
   id             String         @id @default(cuid())
   email          String         @unique
+  emailVerified  Boolean        @default(false) @map("email_verified")
   name           String
   iconUrl        String?        @map("icon_url")
   hashedPassword String?        @map("hashed_password")
+  passwordSalt   String?        @map("password_salt")
   oauthAccounts  OAuthAccount[]
   sessions       Session[]
 }
