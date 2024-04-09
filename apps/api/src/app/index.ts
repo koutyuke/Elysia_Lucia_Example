@@ -1,16 +1,19 @@
 import cors from "@elysiajs/cors";
-import { swagger } from "@elysiajs/swagger";
-import { Elysia } from "elysia";
-import { error } from "../plugins/error";
-import { logger } from "../plugins/logger";
+import swagger from "@elysiajs/swagger";
 import { auth } from "./auth";
+import { baseElysia } from "./base";
+import { users } from "./users";
 
-const app = new Elysia()
-	.use(cors())
+const app = baseElysia()
+	.use(
+		cors({
+			origin: "localhost:3000",
+			allowedHeaders: ["Content-Type", "Authorization"],
+		}),
+	)
 	.use(swagger())
-	.use(logger)
-	.use(error)
 	.use(auth)
+	.use(users)
 	.get("/", () => {
 		return { message: "Hello, world!" };
 	})

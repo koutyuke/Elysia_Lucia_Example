@@ -1,11 +1,11 @@
 import { lucia } from "@/src/libs/auth";
 import { prismaClient } from "@/src/libs/prisma";
 import { BadRequestException } from "@/src/plugins/error/exceptions";
-import { logger } from "@/src/plugins/logger";
 import { password as bunPassword } from "bun";
-import { Elysia, t } from "elysia";
+import { t } from "elysia";
+import { createBaseElysia } from "../base";
 
-const login = new Elysia().use(logger).post(
+const login = createBaseElysia().post(
 	"/login",
 	async ({ body: { email, password }, cookie, set, log }) => {
 		const user = await prismaClient.user.findUnique({

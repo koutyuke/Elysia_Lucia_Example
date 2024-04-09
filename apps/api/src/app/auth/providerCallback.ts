@@ -2,12 +2,12 @@ import { getAuthAccount, lucia } from "@/src/libs/auth";
 import { getTokens } from "@/src/libs/auth/provider";
 import { prismaClient } from "@/src/libs/prisma";
 import { BadRequestException, InternalServerErrorException } from "@/src/plugins/error/exceptions";
-import { logger } from "@/src/plugins/logger";
 import { OAuth2RequestError } from "arctic";
-import { Elysia, t } from "elysia";
+import { t } from "elysia";
 import { generateId } from "lucia";
+import { createBaseElysia } from "../base";
 
-const providerCallback = new Elysia().use(logger).get(
+const providerCallback = createBaseElysia().get(
 	"/:provider/callback",
 	async ({ query: { code, state }, cookie, params: { provider }, set, log }) => {
 		const { oauth_state, oauth_code_verifier, oauth_next } = cookie;

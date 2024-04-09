@@ -1,9 +1,9 @@
 import { genAuthUrl } from "@/src/libs/auth";
 import { generateCodeVerifier, generateState } from "arctic";
-import { Elysia, t } from "elysia";
-import { logger } from "../../plugins/logger";
+import { t } from "elysia";
+import { createBaseElysia } from "../base";
 
-const provider = new Elysia().use(logger).get(
+const provider = createBaseElysia().get(
 	"/:provider",
 	async ({ params: { provider }, cookie: { oauth_state, oauth_code_verifier, oauth_next }, set, query: { next } }) => {
 		const state = generateState();

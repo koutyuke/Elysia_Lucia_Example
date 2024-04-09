@@ -1,13 +1,13 @@
 import { lucia } from "@/src/libs/auth";
 import { prismaClient } from "@/src/libs/prisma";
 import { ConflictException, InternalServerErrorException } from "@/src/plugins/error/exceptions";
-import { logger } from "@/src/plugins/logger";
 import { password as bunPassword } from "bun";
-import { Elysia, t } from "elysia";
+import { t } from "elysia";
 import { generateId } from "lucia";
 import { alphabet, generateRandomString } from "oslo/crypto";
+import { createBaseElysia } from "../base";
 
-const signup = new Elysia().use(logger).post(
+const signup = createBaseElysia().post(
 	"/signup",
 	async ({ body: { email, password, name }, cookie, set, log }) => {
 		const existingUser = await prismaClient.user.findUnique({
