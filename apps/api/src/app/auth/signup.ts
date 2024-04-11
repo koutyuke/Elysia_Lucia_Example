@@ -9,7 +9,7 @@ import { createBaseElysia } from "../base";
 
 const signup = createBaseElysia().post(
 	"/signup",
-	async ({ body: { email, password, name }, cookie, set, log }) => {
+	async ({ body: { email, password, name }, cookie, set, log, env: { PASSWORD_PEPPER: passwordPepper } }) => {
 		const existingUser = await prismaClient.user.findUnique({
 			where: {
 				email,
@@ -22,13 +22,7 @@ const signup = createBaseElysia().post(
 		}
 
 		const userId = generateId(15);
-		const passwordPepper = process.env.PASSWORD_PEPPER;
 		const passwordSalt = generateRandomString(16, alphabet("a-z", "A-Z", "0-9"));
-
-		if (!passwordPepper) {
-			log.error("Password pepper is not set.");
-			throw new InternalServerErrorException();
-		}
 
 		const hashedPassword = await bunPassword.hash(passwordSalt + password + passwordPepper);
 

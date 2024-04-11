@@ -5,7 +5,13 @@ import { createBaseElysia } from "../base";
 
 const provider = createBaseElysia().get(
 	"/:provider",
-	async ({ params: { provider }, cookie: { oauth_state, oauth_code_verifier, oauth_next }, set, query: { next } }) => {
+	async ({
+		params: { provider },
+		cookie: { oauth_state, oauth_code_verifier, oauth_next },
+		set,
+		query: { next },
+		env: { NODE_ENV },
+	}) => {
 		const state = generateState();
 		const codeVerifier = generateCodeVerifier();
 
@@ -14,7 +20,7 @@ const provider = createBaseElysia().get(
 		oauth_state?.set({
 			value: state,
 			path: "/",
-			secure: process.env.NODE_ENV === "production",
+			secure: NODE_ENV === "production",
 			httpOnly: true,
 			sameSite: "lax",
 			maxAge: 60 * 10,
@@ -23,7 +29,7 @@ const provider = createBaseElysia().get(
 		oauth_code_verifier?.set({
 			value: codeVerifier,
 			path: "/",
-			secure: process.env.NODE_ENV === "production",
+			secure: NODE_ENV === "production",
 			httpOnly: true,
 			sameSite: "lax",
 			maxAge: 60 * 10,
@@ -32,7 +38,7 @@ const provider = createBaseElysia().get(
 		oauth_next?.set({
 			value: next ?? "/",
 			path: "/",
-			secure: process.env.NODE_ENV === "production",
+			secure: NODE_ENV === "production",
 			httpOnly: true,
 			sameSite: "lax",
 			maxAge: 60 * 10,

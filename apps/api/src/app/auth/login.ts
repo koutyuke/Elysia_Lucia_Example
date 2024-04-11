@@ -7,7 +7,7 @@ import { createBaseElysia } from "../base";
 
 const login = createBaseElysia().post(
 	"/login",
-	async ({ body: { email, password }, cookie, set, log }) => {
+	async ({ body: { email, password }, cookie, set, log, env: { PASSWORD_PEPPER } }) => {
 		const user = await prismaClient.user.findUnique({
 			where: {
 				email,
@@ -19,7 +19,7 @@ const login = createBaseElysia().post(
 			throw new BadRequestException("User not found.");
 		}
 
-		const passwordPepper = process.env.PASSWORD_PEPPER;
+		const passwordPepper = PASSWORD_PEPPER;
 
 		if (!passwordPepper) {
 			log.error("Password pepper is not set.");
