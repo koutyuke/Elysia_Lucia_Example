@@ -25,20 +25,28 @@ model OAuthAccount {
 }
 
 model User {
-  id             String         @id @default(cuid())
-  email          String         @unique
-  emailVerified  Boolean        @default(false) @map("email_verified")
+  id             String              @id @default(cuid())
+  email          String              @unique
+  emailVerified  Boolean             @default(false) @map("email_verified")
   name           String
-  iconUrl        String?        @map("icon_url")
-  hashedPassword String?        @map("hashed_password")
-  passwordSalt   String?        @map("password_salt")
+  iconUrl        String?             @map("icon_url")
+  hashedPassword String?             @map("hashed_password")
+  passwordSalt   String?             @map("password_salt")
   oauthAccounts  OAuthAccount[]
   sessions       Session[]
+  passwordResets PasswordResetToken?
 }
 
 model Session {
   id        String   @id
-  userId    String
-  expiresAt DateTime
+  userId    String   @map("user_id")
+  expiresAt DateTime @map("expires_at")
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+}
+
+model PasswordResetToken {
+  userId      String   @unique @map("user_id")
+  hashedToken String   @unique @map("hashed_token")
+  expiresAt   DateTime @map("expires_at")
+  user        User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
