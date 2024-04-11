@@ -17,6 +17,16 @@ const envValidateScheme = z.object({
 
 	// Password Pepper
 	PASSWORD_PEPPER: z.string(),
+
+	// Gmail SMTP
+	GMAIL_USER: z.string(),
+	GMAIL_PASSWORD: z.string(),
+
+	// Web
+	WEB_BASE_URL: z.string(),
+
+	// Mobile
+	MOBILE_BASE_URL: z.string(),
 });
 
 export { envValidateScheme };
